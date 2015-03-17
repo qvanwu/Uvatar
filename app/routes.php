@@ -11,4 +11,6 @@
 |
 */
 
-Route::get('/', 'HomeController@showWelcome');
+Route::get('/', 'HomeController@showHome');
+
+Route::get('/register', 'HomeController@showRegisterForm');

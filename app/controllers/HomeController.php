@@ -2,13 +2,18 @@
 
 class HomeController extends BaseController {
 
-	public function showWelcome()
+	public function showHome()
 	{
-		$session = false;
-		if ($session) {
-
-		}
-		else return View::make('home');
+		return View::make('home');
 	}
 
+	public function login()
+	{
+
+	}
+
+	public function showRegisterForm()
+	{
+		return View::make('register');
+	}
 }
