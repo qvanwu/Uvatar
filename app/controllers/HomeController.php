@@ -4,7 +4,11 @@ class HomeController extends BaseController {
 
 	public function showWelcome()
 	{
-		return View::make('home');
+		$session = false;
+		if ($session) {
+
+		}
+		else return View::make('home');
 	}
 
 }

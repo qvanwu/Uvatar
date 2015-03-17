@@ -1,5 +1,5 @@
 @extends('layouts.master')
 
 @section('body.content')
-    boum
+    echo Form::email($name, $value = null, $attributes = array());
 @endsection

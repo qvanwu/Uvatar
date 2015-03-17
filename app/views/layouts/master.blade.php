@@ -11,6 +11,7 @@
                 <div class="navbar-header">
                     <a class="navbar-brand" href="#">Gravatar</a>
                 </div>
+                <button type="button" class="btn btn-default pull-right">Sign up</button>
             </div>
         </nav>
 
