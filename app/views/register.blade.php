@@ -26,11 +26,13 @@
     <br/>
 
     {{--show validator errors--}}
-    <ul>
-        @foreach($errors->all() as $message)
-            <li style="color:#ac2925;">{{$message}}</li>
-        @endforeach
-    </ul>
+    @if($errors->any())
+        <ul>
+            @foreach($errors->all() as $message)
+                <li style="color:#ac2925;">{{$message}}</li>
+            @endforeach
+        </ul>
+    @endif
 
     {{Form::close()}}
 

@@ -49,8 +49,12 @@ class UsersController extends \BaseController {
 			return Redirect::to('register')->withErrors($validator)->withInput();
 		}
 		else {
-			$password = Hash::make('password');
-			return $password;
+			$hashedPassword = Hash::make(Input::get('password'));
+			$user = new User;
+			$user->username = Input::get('username');
+			$user->email = Input::get('email');
+			$user->password = $hashedPassword;
+			$user->save();
 		}
 	}
 
