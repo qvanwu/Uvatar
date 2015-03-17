@@ -11,8 +11,13 @@
 |
 */
 
+Route::resource('user', 'UsersController');
+
 Route::get('/', 'HomeController@showHome');
 
-Route::get('/register', 'HomeController@showRegisterForm');
+#Registration
+Route::get('/register', 'HomeController@showRegisterForm')->before('guest');
 
-Route::resource('user', 'UsersController');
+#Login / logout
+Route::get('/login', 'HomeController@login');
+Route::get('/logout', 'HomeController@logout');

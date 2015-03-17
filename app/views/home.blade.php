@@ -1,20 +1,22 @@
 @extends('layouts.master')
 
 @section('body.login')
-    <form class="col-md-6 col-md-offset-3" action="post" role="form">
-        <h1>Welcome, please login</h1><br/>
-        <label for="email">Email</label>
-        <input class="form-control" type="email" id="email"/>
-        <br>
-        <label for="password">Password</label>
-        <input class="form-control" type="password" id="password"/>
-        <br>
-        <button class="btn btn-primary">Login</button>
-    </form>
+    {{Form::open(array('url'=>'login', 'method'=>'get', 'class'=>'col-md-4 col-md-offset-4'))}}
+        <h1>Login here</h1><br/>
+        <div class="form-group">
+            {{Form::label('email', 'Email')}}
+            {{Form::email('email', null, array('class'=>'form-control'))}}
+        </div>
+        <div class="form-group">
+            {{Form::label('password', 'Password')}}
+            {{Form::password('password', array('class'=>'form-control'))}}
+        </div>
+    {{Form::submit('Login', array('class'=>'btn btn-primary'))}}
+
 @endsection
 
 @section('body.main')
-    auth
+    You are logged in
 @endsection
 
 @stop

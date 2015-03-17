@@ -8,7 +8,6 @@ class UsersController extends \BaseController {
 	 * @return Response
 	 */
 
-	//protected $fillable = ['username', 'email', 'password', 'password_confirmation'];
 
 	public function index()
 	{
@@ -38,10 +37,10 @@ class UsersController extends \BaseController {
 		$validator = Validator::make(
 					$data,
 					[
-						'username' 					=> 'required|min:5',
+						'username' 					=> 'required|min:4',
 						'email'						=> 'required|email|min:5',
-						'password'					=> 'required|min:5|confirmed',
-						'password_confirmation'		=> 'required|min:5'
+						'password'					=> 'required|min:6|confirmed',
+						'password_confirmation'		=> 'required|min:6'
 					]
 		);
 
@@ -55,6 +54,17 @@ class UsersController extends \BaseController {
 			$user->email = Input::get('email');
 			$user->password = $hashedPassword;
 			$user->save();
+
+			return Redirect::to('user/'.$user->username);
+
+			// auto login after registering
+			/*$userdata = array(
+						'username' 	=> $user->username,
+						'password'	=> $user->password);
+			if (Auth::attempt($userdata, true)) {
+				return Redirect::to('user/'.$user->username);
+			}
+			else return 'not ok';*/
 		}
 	}
 
@@ -105,6 +115,5 @@ class UsersController extends \BaseController {
 	{
 		//
 	}
-
 
 }
