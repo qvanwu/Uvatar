@@ -32,11 +32,11 @@
                 </div>
             </nav>
 
-            <div class="container">
+            <div class="container-fluid">
                 @if (Auth::check())
-                    @yield('home.main')    {{--show if not login--}}
+                    @yield('body.main')    {{--show if not login--}}
                 @else
-                    @yield('home.login')         {{--show if session exists--}}
+                    @yield('body.login')         {{--show if session exists--}}
                 @endif
 
                 @yield('register')

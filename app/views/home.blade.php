@@ -1,16 +1,19 @@
 @extends('layouts.master')
 
-@section('home.login')
-    {{ Form::open(array('url' => 'login', 'method' => 'post')) }}
-    {{Form::label('email','Email')}}
-    {{Form::text('email', null,array('class' => 'form-control'))}}
-    {{Form::label('password','Password')}}
-    {{Form::password('password',array('class' => 'form-control'))}}
-    {{Form::submit('Login', array('class' => 'btn btn-primary'))}}
-    {{ Form::close() }}
+@section('body.login')
+    <form class="col-md-6 col-md-offset-3" action="post" role="form">
+        <h1>Welcome, please login</h1><br/>
+        <label for="email">Email</label>
+        <input class="form-control" type="email" id="email"/>
+        <br>
+        <label for="password">Password</label>
+        <input class="form-control" type="password" id="password"/>
+        <br>
+        <button class="btn btn-primary">Login</button>
+    </form>
 @endsection
 
-@section('home.main')
+@section('body.main')
     auth
 @endsection
 

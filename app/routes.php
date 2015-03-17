@@ -14,3 +14,5 @@
 Route::get('/', 'HomeController@showHome');
 
 Route::get('/register', 'HomeController@showRegisterForm');
+
+Route::resource('user', 'UsersController');
