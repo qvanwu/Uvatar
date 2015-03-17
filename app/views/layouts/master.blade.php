@@ -39,7 +39,7 @@
                     @yield('body.login')         {{--show if session exists--}}
                 @endif
 
-                @yield('register')
+                @yield('body.register')
             </div>
         </div>
 

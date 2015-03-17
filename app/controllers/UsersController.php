@@ -7,6 +7,9 @@ class UsersController extends \BaseController {
 	 *
 	 * @return Response
 	 */
+
+	//protected $fillable = ['username', 'email', 'password', 'password_confirmation'];
+
 	public function index()
 	{
 		//
@@ -31,7 +34,24 @@ class UsersController extends \BaseController {
 	 */
 	public function store()
 	{
-		
+		$data = Input::only(['username', 'email', 'password', 'password_confirmation']);
+		$validator = Validator::make(
+					$data,
+					[
+						'username' 					=> 'required|min:5',
+						'email'						=> 'required|email|min:5',
+						'password'					=> 'required|min:5|confirmed',
+						'password_confirmation'		=> 'required|min:5'
+					]
+		);
+
+		if($validator->fails()) {
+			return Redirect::to('register')->withErrors($validator)->withInput();
+		}
+		else {
+			$password = Hash::make('password');
+			return $password;
+		}
 	}
 
 
