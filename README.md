@@ -2,10 +2,12 @@
 
 Here is a carbon copy of the **Gravata** service which developed under Laravel framework.
 
+The application is licensing under the WTFPL, that say you are totally free to use.
+
 ##How to use
 The application is still under developement.
 
-##What you need
+##What do you need
 * PHP >= 5.4
 * MCrypt PHP Extention
 * Any type of database
