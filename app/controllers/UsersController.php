@@ -28,17 +28,21 @@ class UsersController extends \BaseController {
 
 	/**
 	 * Store a newly created resource in storage.
+	 * Register a new user
 	 *
 	 * @return Response
 	 */
 	public function store()
 	{
+		# get input
 		$data = Input::only(['username', 'email', 'password', 'password_confirmation']);
+
+		# input validation
 		$validator = Validator::make(
 					$data,
 					[
-						'username' 					=> 'required|min:4',
-						'email'						=> 'required|email|min:5',
+						'username' 					=> 'required|unique:users|min:4',
+						'email'						=> 'required|unique:users|email|min:5',
 						'password'					=> 'required|min:6|confirmed',
 						'password_confirmation'		=> 'required|min:6'
 					]
@@ -47,15 +51,22 @@ class UsersController extends \BaseController {
 		if($validator->fails()) {
 			return Redirect::to('register')->withErrors($validator)->withInput();
 		}
-		else {
+		else { # save record
 			$hashedPassword = Hash::make(Input::get('password'));
 			$user = new User;
 			$user->username = Input::get('username');
 			$user->email = Input::get('email');
 			$user->password = $hashedPassword;
 			$user->save();
-			
-			return Redirect::to('user/'.$user->username);
+
+			# auto login after sign up
+			if (Auth::attempt(array(
+							'email'		=> Input::get('email'),
+							'password'	=> Input::get('password')
+							), true)) {
+				return Redirect::to('/user/'.Auth::user()->getUserName());
+			}
+			return Redirect::to('/');
 		}
 	}
 
