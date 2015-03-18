@@ -20,7 +20,10 @@ Route::get('/register', 'HomeController@showRegisterForm')->before('guest');
 
 Route::when('user/*', 'auth');
 
-
 #Login / logout
 Route::get('/login', 'HomeController@login');
 Route::get('/logout', 'HomeController@logout');
+
+#upload avatar
+Route::post('upload', array('before' => 'auth',
+            'uses' => 'AvatarsController@create'));

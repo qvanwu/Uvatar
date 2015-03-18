@@ -54,17 +54,8 @@ class UsersController extends \BaseController {
 			$user->email = Input::get('email');
 			$user->password = $hashedPassword;
 			$user->save();
-
+			
 			return Redirect::to('user/'.$user->username);
-
-			// auto login after registering
-			/*$userdata = array(
-						'username' 	=> $user->username,
-						'password'	=> $user->password);
-			if (Auth::attempt($userdata, true)) {
-				return Redirect::to('user/'.$user->username);
-			}
-			else return 'not ok';*/
 		}
 	}
 
@@ -114,6 +105,12 @@ class UsersController extends \BaseController {
 	public function destroy($id)
 	{
 		//
+	}
+	
+	public function showImage() 
+	{
+		$image = Image::make('avatars/Horse.jpg');
+		return Response::make($image, 200, ['Content-Type' => 'image/jpeg']);
 	}
 
 }
