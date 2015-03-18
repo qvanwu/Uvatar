@@ -2,7 +2,7 @@
 
 Here is a carbon copy of the **Gravata** service which developed under Laravel framework.
 
-The application is licensing under the WTFPL, that say you are totally free to use.
+The application is licensing under the [WTFPL](http://www.wtfpl.net/txt/copying/), that says you are totally free to use.
 
 ##How to use
 The application is still under developement.
