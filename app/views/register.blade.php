@@ -2,7 +2,7 @@
 
 @section('body.register')
     {{Form::open(array('route'=>'user.store', 'method'=>'post', 'class'=>'col-md-4 col-md-offset-4'))}}
-    <h1>Register here</h1><br/>
+    <h1 class="text-center">Register here</h1><br/>
 
     <div class="form-group">
         {{Form::label('username', 'Username')}}

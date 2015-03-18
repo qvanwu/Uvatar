@@ -9,7 +9,6 @@
                 padding-top: 70px;
             }
         </style>
-        <script src="{{ URL::asset('assets/js/bootstrap.min.js') }}"></script>
     </head>
 
     <body>
@@ -34,9 +33,9 @@
 
             <div class="container-fluid">
                 @if (Auth::check())
-                    @yield('body.main')    {{--show if not login--}}
+                    @yield('body.main')    {{--show if logged in--}}
                 @else
-                    @yield('body.login')         {{--show if session exists--}}
+                    @yield('body.login')         {{--show login form--}}
                 @endif
 
                 @yield('body.register')
@@ -46,5 +45,7 @@
 
 
 
+        <script src="{{ URL::asset('assets/js/jquery-1.11.2.min.js') }}"></script>
+        <script src="{{ URL::asset('assets/js/bootstrap.min.js') }}"></script>
     </body>
 </html>

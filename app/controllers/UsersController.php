@@ -77,7 +77,7 @@ class UsersController extends \BaseController {
 	 */
 	public function show($id)
 	{
-		//
+		return View::make('user');
 	}
 
 
