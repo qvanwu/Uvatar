@@ -1,4 +1,4 @@
-#Uvatar
+#Qvatar
 
 Here is a carbon copy of the **Gravata** service which developed under Laravel framework.
 
