@@ -12,35 +12,47 @@
     </head>
 
     <body>
-        <div class="container-fluid">
-            <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
-                <div class="container">
-                    <div class="navbar-header">
-                        <a class="navbar-brand" href="/">Gravatar</a>
-                    </div>
-
-                    <div class="collapse navbar-collapse">
-                        <ul class="nav navbar-nav navbar-right">
-                            @if (Auth::check())
-                                <li><a href="/logout">Logout</a></li>
-                            @else
-                                <li><a href="/register">Sign up</a></li>
-                            @endif
-                        </ul>
-                    </div>
-                </div>
-            </nav>
-
+            
+        <!-- navbar -->
+        <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
             <div class="container-fluid">
-                @if (Auth::check())
-                    @yield('body.main')    {{--show if logged in--}}
-                @else
-                    @yield('body.login')         {{--show login form--}}
-                @endif
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="/">Uvatar</a>
+                </div>
 
-                @yield('body.register')
+                <div class="navbar-collapse collapse ">
+                    <ul class="nav navbar-nav navbar-right">
+                        @if (Auth::check())
+                            <li>
+                                <p class="navbar-text">
+                                    Hello {{ Auth::user()->getUserName() }}
+                                </p>
+                            </li>
+
+                            <li><a href="/logout"><span class="glyphicon glyphicon-log-out"></span></a>
+                            </li>
+                        @else
+                            <li><a href="/register">
+                                    Sign up
+                                </a>
+                            </li>
+                        @endif
+                    </ul>
+                </div>
+
             </div>
+        </nav>
+
+        <div class="container-fluid">
+            @if (Auth::check())
+                @yield('body.main')    {{--show if logged in--}}
+            @else
+                @yield('body.login')         {{--show login form--}}
+            @endif
+
+            @yield('body.register')
         </div>
+        
 
 
 

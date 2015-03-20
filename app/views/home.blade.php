@@ -2,7 +2,7 @@
 
     @section('body.login')
         {{Form::open(array('url'=>'login', 'method'=>'get', 'class'=>'col-md-4 col-md-offset-4'))}}
-            <h1 class="text-center">Login here</h1><br/>
+            <h1 class="text-center">Sign in here</h1><br/>
             <div class="form-group">
                 {{Form::label('email', 'Email')}}
                 {{Form::email('email', null, array('class'=>'form-control'))}}
