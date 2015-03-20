@@ -11,19 +11,29 @@
 |
 */
 
-Route::resource('user', 'UsersController');
-
 Route::get('/', 'HomeController@showHome');
-
-#Registration
-Route::get('/register', 'HomeController@showRegisterForm')->before('guest');
-
 Route::when('user/*', 'auth');
 
-#Login / logout
-Route::get('/login', 'HomeController@login');
+# Login / logout
+Route::post('/login', 'HomeController@login');
 Route::get('/logout', 'HomeController@logout');
 
-#upload avatar
+/*
+  * Registration and UserController
+  *
+  * Add resource to use all methods from UsersController
+  * 'user.store' -> create a new user
+  * 'user.update' -> update user profile
+  */
+Route::resource('user', 'UsersController');
+Route::get('/register', 'HomeController@showRegisterForm')->before('guest'); # Show register form
+
+
+
+/*
+ * Avatars Controller
+ *
+ *
+ */
 Route::post('upload', array('before' => 'auth',
             'uses' => 'AvatarsController@create'));

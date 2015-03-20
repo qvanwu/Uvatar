@@ -1,7 +1,7 @@
 @extends('layouts.master')
 
     @section('body.login')
-        {{Form::open(array('url'=>'login', 'method'=>'get', 'class'=>'col-md-4 col-md-offset-4'))}}
+        {{Form::open(array('url'=>'login', 'method'=>'post', 'class'=>'col-md-4 col-md-offset-4'))}}
             <h1 class="text-center">Sign in here</h1><br/>
             <div class="form-group">
                 {{Form::label('email', 'Email')}}

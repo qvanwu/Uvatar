@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Gravatar</title>
+        <title>Uvatar</title>
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="{{ URL::asset('assets/css/bootstrap.min.css') }}"/>
         <style>
@@ -19,7 +19,6 @@
                 <div class="navbar-header">
                     <a class="navbar-brand" href="/">Uvatar</a>
                 </div>
-
                 <div class="navbar-collapse collapse ">
                     <ul class="nav navbar-nav navbar-right">
                         @if (Auth::check())
@@ -39,7 +38,6 @@
                         @endif
                     </ul>
                 </div>
-
             </div>
         </nav>
 
