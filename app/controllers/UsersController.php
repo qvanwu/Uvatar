@@ -59,14 +59,16 @@ class UsersController extends \BaseController {
 			$user->password = $hashedPassword;
 			$user->save();
 
-			# auto login after sign up
+			# create an user own directory and auto-login after sign up
 			if (Auth::attempt(array(
 							'email'		=> Input::get('email'),
 							'password'	=> Input::get('password')
 							), true)) {
+
+				File::makeDirectory(public_path().'/userimage/'.Auth::user()->id, 0775, true, true);
 				return Redirect::to('/user/'.Auth::user()->getUserName());
 			}
-			return Redirect::to('/');
+			else return Redirect::to('/');
 		}
 	}
 

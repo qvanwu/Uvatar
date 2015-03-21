@@ -37,3 +37,12 @@ Route::get('/register', 'HomeController@showRegisterForm')->before('guest'); # S
  */
 Route::post('upload', array('before' => 'auth',
             'uses' => 'AvatarsController@create'));
+
+
+
+
+########## test zone ###############
+Route::any('test', 'BaseController@test');
+
+
+####################################
