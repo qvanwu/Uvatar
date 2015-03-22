@@ -34,12 +34,11 @@
                 <div class="panel-body">
                     <div class="container-fluid">
                         <div class="row">
-                            <button class="btn btn-default btn-sm pull-right" type="submit">
-                                <span class="glyphicon glyphicon-plus"></span>
-                                Upload
-                            </button>
+                            <img src="/userimage/preset.jpg" alt="Your main avatar" class="center-block" width="100" height="100"/>
                         </div>
                         <hr/>
+                        <h4 class="">Select image below or <a href="avatar/new"><b>add a new one</b></a></h4>
+
                         <div class="row">
 
                         {{-- show all avatars here--}}
