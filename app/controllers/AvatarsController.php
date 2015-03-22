@@ -19,9 +19,15 @@ class AvatarsController extends \BaseController {
 	 *
 	 * @return Response
 	 */
-	public function upload()
+	public function store()
 	{
-		return $file = Input::file('inputFile')->getSize();
+        if (Input::file('inputFile')->isValid()) {
+            $filename = rand(1111111111, 9999999999);
+            $path = '/userimage/'.strval(Auth::user()->id);
+            Input::file('inputFile')->move(public_path().$path, $filename);
+            return 'ok';
+        }
+        return 'not good';
 	}
 
 

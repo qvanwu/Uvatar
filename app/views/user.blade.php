@@ -26,14 +26,17 @@
                         <div class="row">
                             <p>Select image below or <a href="#" id="uploadImage"><b>add a new one</b></a></p>
 
-                            {{Form::open(Array('url'=>'/upload',
-                                                'method'=>'get',
+                            {{Form::open(Array('route'=>'avatar.store',
+                                                'method'=>'post',
                                                 'files'=>true,
                                                 'enctype'=>'multipart/form-data'))}}
 
                             <div class="upload-field hidden">
                                 <b id="fileName"></b>
+                                {{--
                                 <button id="btnSubmit" class="btn btn-sm btn-primary" type="submit">Upload</button>
+                                --}}
+                                {{Form::submit('Upload', array('class'=>'btn btn-sm btn-primary', 'id'=>'btnSubmit'))}}
                                 <button id="btnCancel" class="btn btn-sm btn-danger" type="reset">Cancel</button>
                             </div>
                             {{Form::file('inputFile', array('id'=>'inputFile', 'class'=>'hidden'))}}

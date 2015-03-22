@@ -29,7 +29,8 @@ Route::get('/logout', 'UsersController@logout');
 Route::resource('user', 'UsersController');
 Route::get('/register', 'HomeController@showRegisterForm')->before('guest'); # Show register form
 
-Route::get('/upload', 'AvatarsController@upload');
+Route::resource('avatar', 'AvatarsController');
+Route::any('/upload', 'AvatarsController@upload');
 /*
  * Avatars Controller
  *

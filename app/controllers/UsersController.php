@@ -65,7 +65,7 @@ class UsersController extends \BaseController {
 							'password'	=> Input::get('password')
 							), true)) {
 
-				File::makeDirectory(public_path().'/userimage/'.Auth::user()->id, 0775, true, true);
+				File::makeDirectory(public_path().'/userimage/'.Auth::user()->id, 0777, true, true);
 				return Redirect::to('/user/home');
 			}
 			else return Redirect::to('/');
