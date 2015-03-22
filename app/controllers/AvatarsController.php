@@ -19,20 +19,9 @@ class AvatarsController extends \BaseController {
 	 *
 	 * @return Response
 	 */
-	public function create()
+	public function upload()
 	{
-		return 'yes';
-	}
-
-
-	/**
-	 * Store a newly created resource in storage.
-	 *
-	 * @return Response
-	 */
-	public function store()
-	{
-		//
+		return $file = Input::file('inputFile')->getSize();
 	}
 
 

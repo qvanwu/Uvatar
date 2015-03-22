@@ -4,11 +4,7 @@
         <title>Uvatar</title>
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="{{ URL::asset('assets/css/bootstrap.min.css') }}"/>
-        <style>
-            body{
-                padding-top: 70px;
-            }
-        </style>
+        <link rel="stylesheet" href="{{ URL::asset('assets/css/style.css') }}"/>
     </head>
 
     <body>
@@ -50,12 +46,10 @@
 
             @yield('body.register')
         </div>
-        
-
-
 
 
         <script src="{{ URL::asset('assets/js/jquery-1.11.2.min.js') }}"></script>
         <script src="{{ URL::asset('assets/js/bootstrap.min.js') }}"></script>
+        <script src="{{ URL::asset('assets/js/app.js') }}"></script>
     </body>
 </html>

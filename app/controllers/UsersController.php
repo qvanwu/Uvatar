@@ -66,7 +66,7 @@ class UsersController extends \BaseController {
 							), true)) {
 
 				File::makeDirectory(public_path().'/userimage/'.Auth::user()->id, 0775, true, true);
-				return Redirect::to('/user/'.Auth::user()->getUserName());
+				return Redirect::to('/user/home');
 			}
 			else return Redirect::to('/');
 		}
@@ -119,11 +119,40 @@ class UsersController extends \BaseController {
 	{
 		//
 	}
-	
-	public function showImage() 
+
+	public function login()
 	{
-		$image = Image::make('avatars/Horse.jpg');
-		return Response::make($image, 200, ['Content-Type' => 'image/jpeg']);
+
+		$input = Input::only('email', 'password');
+
+		$validator = Validator::make(
+			$input,
+			[
+				'email' 						=> 'required|email|min:5',
+				'password'						=> 'required|min:6'
+			]
+		);
+
+		if($validator->fails()) {
+			return Redirect::to('/')->withErrors($validator)->withInput();
+		}
+
+		elseif (Auth::attempt($input, true)) {
+			return Redirect::to('/user/home');
+		}
+
+		else {
+			$authError = 'The username and password you entered did not match our records. Please double-check and try again.';
+			return Redirect::to('/')->withErrors($authError)->withInput();
+		}
 	}
+
+	public function logout()
+	{
+		if (Auth::check()) Auth::logout();
+
+		return Redirect::to('/');
+	}
+
 
 }
