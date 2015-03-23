@@ -27,4 +27,5 @@ class Avatar extends Eloquent implements UserInterface, RemindableInterface
     {
         return $this->filename;
     }
+
 }

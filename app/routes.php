@@ -26,16 +26,11 @@ Route::get('/logout', 'UsersController@logout');
   * 'user.store' -> create a new user
   * 'user.update' -> update user profile
   */
+
 Route::resource('user', 'UsersController');
 Route::get('/register', 'HomeController@showRegisterForm')->before('guest'); # Show register form
 
 Route::resource('avatar', 'AvatarsController');
-Route::any('/upload', 'AvatarsController@upload');
-/*
- * Avatars Controller
- *
- *
- */
 
 
 ########## test zone ###############

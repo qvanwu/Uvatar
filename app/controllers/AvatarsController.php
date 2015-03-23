@@ -102,7 +102,8 @@ class AvatarsController extends \BaseController {
 	 */
 	public function destroy($id)
 	{
-		//
+		Avatar::destroy($id);
+        return Redirect::to('/');
 	}
 
 

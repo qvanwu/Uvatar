@@ -4,14 +4,12 @@
     - hover on image to set main
     - hover on image to delete
 
-#File upload
+**Confirm email**
 
 ##AvatarsController
 **store()**
     - check file size
     - auto crop image when upload
-
-**destroy()**
 
 **setMain*()**
 

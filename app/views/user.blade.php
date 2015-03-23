@@ -2,7 +2,7 @@
 
     @section('body.main')
 
-        <div class="col-md-3">
+        <div class="col-md-2">
             <ul class="nav nav-pills nav-stacked">
                 <li role="presentation" class="active"><a href="#">Avatars</a></li>
                 <li role="presentation" class=""><a href="#">API</a></li>
@@ -10,7 +10,7 @@
             </ul>
         </div>
 
-        <div class="col-md-9">
+        <div class="col-md-10">
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <h3 class="panel-title">Here your avatars</h3>
@@ -47,15 +47,34 @@
                             {{Form::close()}}
                         </div>
 
+                        <br/>
 
-                        <div class="row">
+
+                        <div class="container-fluid">
+
                             @foreach(Auth::user()->avatars as $avatar)
-                                {{HTML::image(
+                                <div class="col-xs-3 thumb">
+                                    <div class="thumbnail" href="#">
+                                        {{
+                                        HTML::image(
                                                 url('userimage/'.Auth::user()->id.'/'.$avatar->filename.'?size=500'),
                                                 '', # alt attribute
-                                                array('class' => 'img-thumbnail thumb')
-                                                )}}
+                                                array('class' => '')
+                                        )
+                                        }}
+
+                                        <div class="btn btn-xs btn-primary image-buttons">Pick this</div>
+                                        {{Form::open(array('action' => array('AvatarsController@setMain', $avatar->id), 'method' => 'get'))}}
+                                        {{Form::submit('Pick this', array('class' => 'btn btn-xs btn-primary image-buttons'))}}
+                                        {{Form::close()}}
+
+                                        {{Form::open(array('route' => array('avatar.destroy', $avatar->id), 'method' => 'delete'))}}
+                                            {{Form::submit('Remove', array('class' => 'btn btn-xs btn-danger image-buttons pull-right'))}}
+                                        {{Form::close()}}
+                                    </div>
+                                </div>
                             @endforeach
+
 
                         </div>
                     </div>
