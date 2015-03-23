@@ -33,32 +33,29 @@
 
                             <div class="upload-field hidden">
                                 <b id="fileName"></b>
-                                {{--
-                                <button id="btnSubmit" class="btn btn-sm btn-primary" type="submit">Upload</button>
-                                --}}
                                 {{Form::submit('Upload', array('class'=>'btn btn-sm btn-primary', 'id'=>'btnSubmit'))}}
                                 <button id="btnCancel" class="btn btn-sm btn-danger" type="reset">Cancel</button>
                             </div>
+                            @if($errors->any())
+                                <ul>
+                                    @foreach($errors->all() as $message)
+                                        <li style="color:#ac2925;">{{$message}}</li>
+                                    @endforeach
+                                </ul>
+                            @endif
                             {{Form::file('inputFile', array('id'=>'inputFile', 'class'=>'hidden'))}}
                             {{Form::close()}}
-
-                            {{--
-                            <form id="formUpload" method="POST" action="/upload" enctype="multipart/form-data">
-                                <div class="upload-field hidden">
-                                    <b id="fileName"></b>
-                                    <button id="btnSubmit" class="btn btn-sm btn-primary" type="submit">Upload</button>
-                                    <button id="btnCancel" class="btn btn-sm btn-danger" type="reset">Cancel</button>
-                                </div>
-                                <input type="file" id="inputFile" name="inputFile" class="hidden"/>
-                            </form>
-                            --}}
-
                         </div>
 
 
                         <div class="row">
-
-                        {{-- show all avatars here--}}
+                            @foreach(Auth::user()->avatars as $avatar)
+                                {{HTML::image(
+                                                url('userimage/'.Auth::user()->id.'/'.$avatar->filename.'?size=500'),
+                                                '', # alt attribute
+                                                array('class' => 'img-thumbnail thumb')
+                                                )}}
+                            @endforeach
 
                         </div>
                     </div>

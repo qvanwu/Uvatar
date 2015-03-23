@@ -9,7 +9,10 @@ class AvatarsController extends \BaseController {
 	 */
 	public function index()
 	{
-		//
+        $avatars = Auth::user()->avatars;
+        foreach ($avatars as $avatar) {
+
+        }
 	}
 
 
@@ -21,13 +24,37 @@ class AvatarsController extends \BaseController {
 	 */
 	public function store()
 	{
-        if (Input::file('inputFile')->isValid()) {
-            $filename = rand(1111111111, 9999999999);
-            $path = '/userimage/'.strval(Auth::user()->id);
-            Input::file('inputFile')->move(public_path().$path, $filename);
-            return 'ok';
+        $file = Input::file('inputFile');
+
+        $toValidate = array('inputFile' => $file);
+        $rule = array(
+                        'inputFile' => 'required',
+                        'inputFile' => 'mimes:jpeg,bmp,png',
+        );
+
+        $validator = Validator::make($toValidate, $rule);
+
+        if ($validator->fails()) {
+            $validator->messages();
+            return Redirect::to('user/home')->withErrors($validator)->withInput();
         }
-        return 'not good';
+
+        if ($file->isValid()) {
+            # save to server
+            $fileExt = $file->getClientOriginalExtension();
+            $mime = $file->getMimeType();
+            $filename = strtolower(str_random(20) . '.' . $fileExt);
+            $path = public_path().'/userimage/'.strval(Auth::user()->id); #/public/userimage/[user->id]/
+            $file->move($path, $filename);
+
+            # push record to database
+            $avatar = new Avatar();
+            $avatar->user_id = Auth::user()->id;
+            $avatar->filename = $filename;
+            $avatar->push();
+
+            return Redirect::to('user/home');
+        }
 	}
 
 

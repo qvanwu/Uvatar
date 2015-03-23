@@ -1,3 +1,8 @@
 body{
     padding-top: 70px;
 }
+
+.thumb{
+    width: 130px;
+    height: 130px;
+}

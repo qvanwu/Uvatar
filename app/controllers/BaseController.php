@@ -20,6 +20,10 @@ class BaseController extends Controller {
 
 	public function test()
 	{
-	}
+        $avatars = Auth::user()->avatars;
+        foreach($avatars as $avatar) {
+            echo $avatar->filename.'<br>';
+        }
+    }
 
 }
