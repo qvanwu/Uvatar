@@ -18,7 +18,13 @@
                 <div class="panel-body">
                     <div class="container-fluid">
                         <div class="row">
-                            <img src="/userimage/preset.jpg" alt="Your main avatar" class="center-block" width="100" height="100"/>
+                            {{
+                                HTML::image(
+                                url('userimage/'.Auth::user()->id.'/'.Auth::user()->main_avatar),
+                                '', # alt attribute
+                                array('class' => 'center-block', 'width' => '150', 'height' => '150')
+                                )
+                            }}
                         </div>
                         <hr/>
 
@@ -54,20 +60,21 @@
 
                             @foreach(Auth::user()->avatars as $avatar)
                                 <div class="col-xs-3 thumb">
-                                    <div class="thumbnail" href="#">
+                                    <div class="" href="#">
                                         {{
                                         HTML::image(
                                                 url('userimage/'.Auth::user()->id.'/'.$avatar->filename.'?size=500'),
                                                 '', # alt attribute
-                                                array('class' => '')
+                                                array('class' => 'thumb')
                                         )
                                         }}
 
-                                        <div class="btn btn-xs btn-primary image-buttons">Pick this</div>
+                                        {{-- Set image as main --}}
                                         {{Form::open(array('action' => array('AvatarsController@setMain', $avatar->id), 'method' => 'get'))}}
-                                        {{Form::submit('Pick this', array('class' => 'btn btn-xs btn-primary image-buttons'))}}
+                                            {{Form::submit('Pick this', array('class' => 'btn btn-xs btn-primary image-buttons'))}}
                                         {{Form::close()}}
 
+                                        {{-- Delete image --}}
                                         {{Form::open(array('route' => array('avatar.destroy', $avatar->id), 'method' => 'delete'))}}
                                             {{Form::submit('Remove', array('class' => 'btn btn-xs btn-danger image-buttons pull-right'))}}
                                         {{Form::close()}}

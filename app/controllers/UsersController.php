@@ -51,22 +51,32 @@ class UsersController extends \BaseController {
 		if($validator->fails()) {
 			return Redirect::to('register')->withErrors($validator)->withInput();
 		}
-		else { # save record
+		else {
+		    # save User record
 			$hashedPassword = Hash::make(Input::get('password'));
 			$user = new User;
 			$user->username = Input::get('username');
 			$user->email = Input::get('email');
 			$user->password = $hashedPassword;
+            $user->main_email = Input::get('email');
 			$user->save();
 
-			# create an user own directory and auto-login after sign up
-			if (Auth::attempt(array(
+
+            # create an user own directory and auto-login after sign up
+            if (Auth::attempt(array(
 							'email'		=> Input::get('email'),
 							'password'	=> Input::get('password')
 							), true)) {
 
-				File::makeDirectory(public_path().'/userimage/'.Auth::user()->id, 0777, true, true);
-				return Redirect::to('/user/home');
+                File::makeDirectory(public_path().'/userimage/'.Auth::user()->id, 0777, true, true);
+
+                # save Email record
+                $email = new Email;
+                $email->user_id = Auth::user()->id;
+                $email->email = Auth::user()->email;
+                $email->save();
+
+                return Redirect::to('/user/home');
 			}
 			else return Redirect::to('/');
 		}

@@ -106,5 +106,23 @@ class AvatarsController extends \BaseController {
         return Redirect::to('/');
 	}
 
+    /**
+     * Set an avatar as main
+     *
+     * @param int $id
+     * @return Response
+     *
+     */
+
+    public function setMain($id)
+    {
+        $filename = Avatar::find($id)->filename;
+        $
+        Auth::user()->main_avatar = $filename;
+        Auth::user()->save();
+
+        return Redirect::to('/');
+    }
+
 
 }

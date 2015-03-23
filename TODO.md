@@ -11,8 +11,6 @@
     - check file size
     - auto crop image when upload
 
-**setMain*()**
-
 ##Ajax
 
 All RESTfull methods in AvatarsController
