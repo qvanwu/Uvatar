@@ -40,6 +40,7 @@
         <div class="container-fluid">
             @if (Auth::check())
                 @yield('body.main')    {{--show if logged in--}}
+                @yield('email.add')
             @else
                 @yield('body.login')         {{--show login form--}}
             @endif

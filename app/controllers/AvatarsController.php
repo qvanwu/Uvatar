@@ -117,7 +117,7 @@ class AvatarsController extends \BaseController {
     public function setMain($id)
     {
         $filename = Avatar::find($id)->filename;
-        $
+
         Auth::user()->main_avatar = $filename;
         Auth::user()->save();
 

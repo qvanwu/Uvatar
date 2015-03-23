@@ -164,5 +164,10 @@ class UsersController extends \BaseController {
 		return Redirect::to('/');
 	}
 
+    public function setMainEmail()
+    {
+
+    }
+
 
 }

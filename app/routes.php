@@ -33,9 +33,9 @@ Route::get('/register', 'HomeController@showRegisterForm')->before('guest'); # S
 Route::get('avatar/main/{id}', array('as' => 'main', 'uses' => 'AvatarsController@setMain'));
 Route::resource('avatar', 'AvatarsController');
 
-
+Route::get('user/email/add', 'EmailsController@add');
+Route::resource('email', 'EmailsController');
 ########## test zone ###############
 Route::any('test', 'BaseController@test');
-
 
 ####################################

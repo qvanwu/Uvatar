@@ -13,9 +13,21 @@
         <div class="col-md-10">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <h3 class="panel-title">Here your avatars</h3>
+                    <h3 class="panel-title">Here your account</h3>
                 </div>
                 <div class="panel-body">
+
+                    <div class="container-fluid">
+                        <div class="row">
+                            <p>Here are your emails: <span class="pull-right"><a href="email/add"><b>Add a new email</b></a></span></p>
+                        </div>
+                        <div class="row">
+                            @foreach(Auth::user()->emails as $email)
+                                <a href="#">{{$email->email}}</a>
+                            @endforeach
+                        </div>
+                    </div>
+
                     <div class="container-fluid">
                         <div class="row">
                             {{
@@ -55,9 +67,8 @@
 
                         <br/>
 
-
+                        {{-- show all avatars --}}
                         <div class="container-fluid">
-
                             @foreach(Auth::user()->avatars as $avatar)
                                 <div class="col-xs-3 thumb">
                                     <div class="" href="#">
