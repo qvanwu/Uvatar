@@ -14,12 +14,15 @@
         {{Form::submit('Login', array('class'=>'btn btn-primary'))}}
         
         {{--show validator errors--}}
+
         @if($errors->any())
+            <div class="alert alert-danger" role="alert">
             <ul>
                 @foreach($errors->all() as $message)
                     <li style="color:#ac2925;">{{$message}}</li>
                 @endforeach
             </ul>
+            </div>
         @endif
     @endsection
     

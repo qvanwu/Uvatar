@@ -66,8 +66,9 @@ class AvatarsController extends \BaseController {
 	 */
 	public function show($id)
 	{
-		//
+      return View::make('avatar')->with('avatar', Avatar::find($id));
 	}
+
 
 
 	/**
@@ -114,13 +115,11 @@ class AvatarsController extends \BaseController {
      *
      */
 
-    public function setMain($id)
+    public function setMain($avatar_id)
     {
-        $filename = Avatar::find($id)->filename;
+        $filename = Avatar::find($avatar_id)->filename;
 
-        Auth::user()->main_avatar = $filename;
-        Auth::user()->save();
-
+        Auth::user()->emails->find($email_id)->email = $filename;
         return Redirect::to('/');
     }
 

@@ -6,3 +6,12 @@ body{
     width: 150px;
     height: 150px;
 }
+
+.single-avatar{
+    max-width: 60%;
+    height: auto;
+}
+
+.thumb-active{
+        border: solid 4px #337AB7;
+}

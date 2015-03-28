@@ -15,3 +15,10 @@ $('#btnSubmit').click(function(){
 $('#btnCancel').click(function(){
     $('.upload-field').addClass('hidden');
 });
+
+
+// avatar select event
+$('.img-thumbnail').click(function(){
+    $('.img-thumbnail').removeClass('thumb-active');
+    $(this).addClass('thumb-active');
+});

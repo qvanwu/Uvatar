@@ -21,17 +21,19 @@
         {{Form::label('password_confirmation', 'Password confirm')}}
         {{Form::password('password_confirmation', array('class'=>'form-control'))}}
     </div>
-        {{Form::submit('Register', array('class'=>'btn btn-primary'))}}
+    {{Form::submit('Register', array('class'=>'btn btn-primary'))}}
 
     <br/>
 
     {{--show validator errors--}}
     @if($errors->any())
-        <ul>
-            @foreach($errors->all() as $message)
-                <li style="color:#ac2925;">{{$message}}</li>
-            @endforeach
-        </ul>
+        <div class="alert alert-danger" role="alert">
+            <ul>
+                @foreach($errors->all() as $message)
+                    <li style="color:#ac2925;">{{$message}}</li>
+                @endforeach
+            </ul>
+        </div>
     @endif
 
     {{Form::close()}}

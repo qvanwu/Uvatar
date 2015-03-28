@@ -58,7 +58,6 @@ class UsersController extends \BaseController {
 			$user->username = Input::get('username');
 			$user->email = Input::get('email');
 			$user->password = $hashedPassword;
-            $user->main_email = Input::get('email');
 			$user->save();
 
 
@@ -74,6 +73,8 @@ class UsersController extends \BaseController {
                 $email = new Email;
                 $email->user_id = Auth::user()->id;
                 $email->email = Auth::user()->email;
+                $email->main_avatar = 'preset.png';
+
                 $email->save();
 
                 return Redirect::to('/user/home');

@@ -30,7 +30,7 @@ Route::get('/logout', 'UsersController@logout');
 Route::resource('user', 'UsersController');
 Route::get('/register', 'HomeController@showRegisterForm')->before('guest'); # Show register form
 
-Route::get('avatar/main/{id}', array('as' => 'main', 'uses' => 'AvatarsController@setMain'));
+// Route::get('avatar/{id}', 'AvatarsController@show');
 Route::resource('avatar', 'AvatarsController');
 
 Route::get('user/email/add', 'EmailsController@add');
