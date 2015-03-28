@@ -73,8 +73,6 @@ class UsersController extends \BaseController {
                 $email = new Email;
                 $email->user_id = Auth::user()->id;
                 $email->email = Auth::user()->email;
-                $email->main_avatar = 'preset.png';
-
                 $email->save();
 
                 return Redirect::to('/user/home');

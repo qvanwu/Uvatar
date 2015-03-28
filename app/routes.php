@@ -14,6 +14,7 @@
 Route::get('/', 'HomeController@showHome');
 Route::when('upload', 'auth');
 Route::when('user/*', 'auth');
+Route::when('avatar/*', 'auth');
 
 # Login / logout
 Route::post('/login', 'UsersController@login');
@@ -31,9 +32,10 @@ Route::resource('user', 'UsersController');
 Route::get('/register', 'HomeController@showRegisterForm')->before('guest'); # Show register form
 
 // Route::get('avatar/{id}', 'AvatarsController@show');
+//Route::get('avatar/attach', 'AvatarsController@attach');
+Route::get('user/email/add', 'EmailsController@add');
 Route::resource('avatar', 'AvatarsController');
 
-Route::get('user/email/add', 'EmailsController@add');
 Route::resource('email', 'EmailsController');
 ########## test zone ###############
 Route::any('test', 'BaseController@test');

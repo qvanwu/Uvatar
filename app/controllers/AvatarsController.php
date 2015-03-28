@@ -70,28 +70,18 @@ class AvatarsController extends \BaseController {
 	}
 
 
-
-	/**
-	 * Show the form for editing the specified resource.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
+    /**
+     * @param int $id
+     * @return Response
+     */
 	public function edit($id)
 	{
-		//
-	}
-
-
-	/**
-	 * Update the specified resource in storage.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function update($id)
-	{
-		//
+        $avatar = Avatar::find($id);
+        $input = Input::get('email');
+        $email = Email::where('email', '=', $input)->first();
+        $email->main_avatar = $avatar->filename;
+        $email->save();
+        return Redirect::to('/');
 	}
 
 
@@ -106,22 +96,5 @@ class AvatarsController extends \BaseController {
 		Avatar::destroy($id);
         return Redirect::to('/');
 	}
-
-    /**
-     * Set an avatar as main
-     *
-     * @param int $id
-     * @return Response
-     *
-     */
-
-    public function setMain($avatar_id)
-    {
-        $filename = Avatar::find($avatar_id)->filename;
-
-        Auth::user()->emails->find($email_id)->email = $filename;
-        return Redirect::to('/');
-    }
-
 
 }

@@ -25,7 +25,7 @@ class EmailsController extends \BaseController {
         $validator = Validator::make(
             $input,
             [
-                'email'						=> 'required|unique:users|email|min:5',
+                'email'						=> 'required|unique:emails|email|min:5',
             ]
         );
 
@@ -98,7 +98,8 @@ class EmailsController extends \BaseController {
 	 */
 	public function destroy($id)
 	{
-		//
+        Email::destroy($id);
+        return Redirect::to('/');
 	}
 
     public function add()

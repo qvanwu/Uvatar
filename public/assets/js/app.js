@@ -16,7 +16,9 @@ $('#btnCancel').click(function(){
     $('.upload-field').addClass('hidden');
 });
 
-
+function confirmDelete() {
+    return confirm('Really delete?');
+}
 // avatar select event
 $('.img-thumbnail').click(function(){
     $('.img-thumbnail').removeClass('thumb-active');
