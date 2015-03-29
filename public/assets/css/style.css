@@ -16,6 +16,10 @@ body {
     height: auto;
 }
 
+.thumbnail{
+    margin-bottom: 5px;
+}
+
 .thumbnail:hover {
     border: solid 4px #337AB7;
 }

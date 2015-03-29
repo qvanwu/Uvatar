@@ -16,22 +16,34 @@ Here your emails or <a href="email/add"><b>add a new address</b></a>
     @foreach(Auth::user()->emails as $email)
         <a href="#">
             <li id="{{$email->id}}" class="list-group-item row">
-                @if (is_null($email->main_avatar))
-                    <div class="col-md-5">
+                <div class="col-md-5">
+                    <div class="col-md-8">
                         <h4>{{$email->email}}</h4>
-                        @else
-                            <div class="thumbnail small-thumb col-md-3">
-                                {{HTML::image(url('userimage/'.Auth::user()->id.'/'.$email->main_avatar))}}
-                            </div>
-                            <div class="col-md-5">
-                                <h4>{{$email->email}}</h4>
-                                @endif
-                                {{Form::open(array('route' => array('email.destroy', $email->id),
-                                                    'method' => 'delete',
-                                                    'onsubmit' => 'return confirm("You really want to delete this item?")'))}}
-                                {{Form::submit('Delete address', array('class' => 'btn-hidden'))}}
-                                {{Form::close()}}
-                            </div>
+                    </div>
+                    @if (!is_null($email->main_avatar))
+                        <div class="thumbnail small-thumb col-md-3">
+                            {{HTML::image(url('userimage/'.Auth::user()->id.'/'.$email->main_avatar))}}
+                        </div>
+                    @endif
+
+                    <div class="col-md-6">
+                        {{Form::open(array('route' => array('email.destroy', $email->id),
+                                            'method' => 'delete',
+                                            'onsubmit' => 'return confirm("You really want to delete this item?")'))}}
+                        {{Form::submit('Delete address', array('class' => 'btn-hidden'))}}
+                        {{Form::close()}}
+                    </div>
+
+                    @if (!is_null($email->main_avatar))
+                        <div class="col-md-6">
+                            {{Form::open(array('action' => array('EmailsController@remove', $email->id),
+                                                'method' => 'get',
+                                                'onsubmit' => 'return confirm("You really want to delete this item?")'))}}
+                            {{Form::submit('Remove avatar', array('class' => 'btn-hidden'))}}
+                            {{Form::close()}}
+                        </div>
+                    @endif
+                </div>
             </li>
         </a>
     @endforeach

@@ -110,4 +110,18 @@ class EmailsController extends \BaseController {
     }
 
 
+    /**
+     * remove the avatar from email
+     * @param $id
+     * @return mixed
+     */
+    public function remove($id)
+    {
+        $email = Email::find($id);
+        $email->main_avatar = null;
+        $email->save();
+        return Redirect::to('/');
+    }
+
+
 }

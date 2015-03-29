@@ -26,6 +26,22 @@ class ApiController extends Controller
     public function getImage($md5, $size = 250, $format = 'jpg')
     {
         $account = Email::where('md5', $md5)->first();
+
+        if (is_null($account) || is_null($account->main_avatar)) App::abort(404);
+
+        $path = public_path() . '/userimage' . '/' . $account->user_id . '/' . $account->main_avatar;
+
+        $image = Image::make($path);
+        return $image->resize($size, $size)->response($format);
+    }
+
+    public function getImageByEmail($email, $size = 250, $format = 'jpg')
+    {
+        $md5 = md5(strtolower(trim($email)));
+        $account = Email::where('md5', $md5)->first();
+
+        if (is_null($account) || is_null($account->main_avatar)) App::abort(404);
+
         $path = public_path() . '/userimage' . '/' . $account->user_id . '/' . $account->main_avatar;
 
         $image = Image::make($path);
