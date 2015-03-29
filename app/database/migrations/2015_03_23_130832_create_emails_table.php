@@ -19,6 +19,7 @@ class CreateEmailsTable extends Migration {
             $table->foreign('user_id')->references('id')->on('users');
             $table->string(('email'))->unique();
             $table->string('main_avatar')->nullable();
+            $table->string('md5');
             $table->timestamps();
 		});
 	}

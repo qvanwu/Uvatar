@@ -73,6 +73,8 @@ class UsersController extends \BaseController {
                 $email = new Email;
                 $email->user_id = Auth::user()->id;
                 $email->email = Auth::user()->email;
+                $email->md5 = md5( strtolower(trim(Input::get('email'))));
+
                 $email->save();
 
                 return Redirect::to('/user/home');

@@ -17,6 +17,9 @@
                 </div>
                 <div class="navbar-collapse collapse ">
                     <ul class="nav navbar-nav navbar-right">
+                        <li>
+                            <a href="/api">API</a>
+                        </li>
                         @if (Auth::check())
                             <li>
                                 <p class="navbar-text">

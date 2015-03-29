@@ -36,6 +36,8 @@ class EmailsController extends \BaseController {
             $email = new Email();
             $email->user_id = Auth::user()->id;
             $email->email = Input::get('email');
+            $email->md5 = md5( strtolower(trim(Input::get('email'))));
+
             $email->save();
             return Redirect::to('/');
         }

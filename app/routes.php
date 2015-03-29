@@ -37,6 +37,11 @@ Route::get('user/email/add', 'EmailsController@add');
 Route::resource('avatar', 'AvatarsController');
 
 Route::resource('email', 'EmailsController');
+
+
+Route::get('api', 'ApiController@show');
+Route::get('api/generate', 'ApiController@generate');
+Route::get('image/{md5}/{size?}/{format?}', 'ApiController@getImage');
 ########## test zone ###############
 Route::any('test', 'BaseController@test');
 
