@@ -21,6 +21,7 @@
 
                     Here your emails or <a href="email/add"><b>add a new address</b></a>
                     <br/>
+                    <br/>
 
                     <ul class="list-group">
                         @foreach(Auth::user()->emails as $email)
@@ -29,22 +30,19 @@
                                     @if (is_null($email->main_avatar))
                                         <div class="col-md-5">
                                             <h4>{{$email->email}}</h4>
+                                            @else
+                                                <div class="thumbnail small-thumb col-md-3">
+                                                    {{HTML::image(url('userimage/'.Auth::user()->id.'/'.$email->main_avatar))}}
+                                                </div>
+                                                <div class="col-md-5">
+                                                    <h4>{{$email->email}}</h4>
+                                            @endif
+                                                    {{Form::open(array('route' => array('email.destroy', $email->id),
+                                                                        'method' => 'delete',
+                                                                        'onsubmit' => 'return confirm("You really want to delete this item?")'))}}
+                                                    {{Form::submit('Delete address', array('class' => 'btn-hidden'))}}
+                                                    {{Form::close()}}
                                         </div>
-                                    @else
-                                        <div class="thumbnail small-thumb col-md-3">
-                                            {{HTML::image(url('userimage/'.Auth::user()->id.'/'.$email->main_avatar))}}
-                                        </div>
-                                        <div class="col-md-5">
-                                            <h4>{{$email->email}}</h4>
-                                        </div>
-                                    @endif
-                                    <div class="col-md-6">
-                                        {{Form::open(array('route' => array('email.destroy', $email->id),
-                                        'method' => 'delete',
-                                        'onsubmit' => 'return confirm("You really want to delete this item?")'))}}
-                                        {{Form::submit('Delete address', array('class' => 'btn btn-xs btn-danger pull-right'))}}
-                                        {{Form::close()}}
-                                    </div>
                                 </li>
                             </a>
                         @endforeach
