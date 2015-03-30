@@ -26,13 +26,15 @@ Here your emails or <a href="email/add"><b>add a new address</b></a>
                         </div>
                     @endif
 
+                    @if($email != Auth::user()->emails->first())
                     <div class="col-md-6">
-                        {{Form::open(array('route' => array('email.destroy', $email->id),
-                                            'method' => 'delete',
-                                            'onsubmit' => 'return confirm("You really want to delete this item?")'))}}
-                        {{Form::submit('Delete address', array('class' => 'btn-hidden'))}}
-                        {{Form::close()}}
+                            {{Form::open(array('route' => array('email.destroy', $email->id),
+                                                'method' => 'delete',
+                                                'onsubmit' => 'return confirm("You really want to delete this item?")'))}}
+                            {{Form::submit('Delete address', array('class' => 'btn-hidden'))}}
+                            {{Form::close()}}
                     </div>
+                    @endif
 
                     @if (!is_null($email->main_avatar))
                         <div class="col-md-6">

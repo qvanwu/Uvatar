@@ -11,37 +11,34 @@
 |
 */
 
-Route::get('/', 'HomeController@showHome');
+// pages need authentication
 Route::when('upload', 'auth');
 Route::when('user/*', 'auth');
 Route::when('avatar/*', 'auth');
+
+// homepage
+Route::get('/', 'HomeController@showHome');
 
 # Login / logout
 Route::post('/login', 'UsersController@login');
 Route::get('/logout', 'UsersController@logout');
 
-/*
-  * Registration and UserController
-  *
-  * Add resource to use all methods from UsersController
-  * 'user.store' -> create a new user
-  * 'user.update' -> update user profile
-  */
-
-Route::resource('user', 'UsersController');
+// register
 Route::get('/register', 'HomeController@showRegisterForm')->before('guest'); # Show register form
 
+// Users controller
+Route::resource('user', 'UsersController');
+
+// Emails controller
 Route::get('user/email/add', 'EmailsController@add');
 Route::get('email/remove/{id}', 'EmailsController@remove');
 Route::resource('email', 'EmailsController');
+
+// Avatars controller
 Route::resource('avatar', 'AvatarsController');
 
-
+// API
 Route::get('api', 'ApiController@show');
 Route::get('api/generate', 'ApiController@generate');
 Route::get('image/email/{email}/{size?}/{format?}', 'ApiController@getImageByEmail');
 Route::get('image/{md5}/{size?}/{format?}', 'ApiController@getImage');
-########## test zone ###############
-Route::any('test', 'BaseController@test');
-
-####################################
