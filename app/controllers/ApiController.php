@@ -18,9 +18,9 @@ class ApiController extends Controller
      * response a image with params
      *
      * @param $md5 hashed email address
-     * @param null $size image size
-     * @param null $format image format
-     * @return mixed
+     * @param $size image size
+     * @param $format image format
+     * @return Image
      */
 
     public function getImage($md5, $size = 250, $format = 'jpg')
@@ -34,6 +34,15 @@ class ApiController extends Controller
         $image = Image::make($path);
         return $image->resize($size, $size)->response($format);
     }
+
+    /**
+     * response a image with params
+     *
+     * @param $email email address
+     * @param $size image size
+     * @param $format image format
+     * @return Image
+     */
 
     public function getImageByEmail($email, $size = 250, $format = 'jpg')
     {
@@ -50,6 +59,7 @@ class ApiController extends Controller
 
     /**
      * generate a url to fetch image
+     * 
      * @return mixed
      */
     public function generate()
