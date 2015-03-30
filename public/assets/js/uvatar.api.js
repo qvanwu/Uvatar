@@ -34,35 +34,52 @@ var host = 'localhost:8000';
 
 // (optional) Set image format (jpg by default)
 // Support formats: jpg, png, bmp
-var format = 'jpg'
 
 // (optional) Set image size (250 x 250px by default)
-var size = 200;
 
 $(document).ready(function () {
 
+    var ext = 'jpg';
+
+    var size = 200;
+
     $('.uvatar-image').each(function () {
         var hash = $(this).attr('src');
-        var image = 'http://' + host + '/image/' + hash + '/' + size + '/' + format;
+        var image = 'http://' + host + '/image/' + hash + '/' + size + '/' + ext;
         $(this).attr('src', image);
     });
 
     $('.uvatar-image-by-email').each(function () {
         var email = $(this).attr('src');
-        var image = 'http://' + host + '/image/' + 'email/' + email + '/' + size + '/' + format;
+        var image = 'http://' + host + '/image/' + 'email/' + email + '/' + size + '/' + ext;
         $(this).attr('src', image);
     });
 
     $('#btn-email').click(function () {
+        $('input[name="email-format"]').each(function () {
+            if(($(this).prop('checked'))) {
+                ext = $(this).val();
+            }
+        });
+
+        size = $('#email-size').val();
         var email = $('#email').val();
-        var image = 'http://' + host + '/image/' + 'email/' + email + '/' + size + '/' + format;
-        $('#result-p').html(image);
-        $('#result-img').attr('src', image)
+        var result = 'http://' + host + '/image/' + 'email/' + email + '/' + size + '/' + ext;
+        $('#result-p').html(result);
+        $('#result-img').attr('src', result)
     });
 
     $('#btn-md5').click(function () {
+        $('input[name="md5-format"]').each(function () {
+            if(($(this).prop('checked'))) {
+                ext = $(this).val();
+            }
+        });
+
+        size = $('#email-size').val();
         var md5 = $('#md5').val();
-        $('#result-p').html(md5);
+        var result = 'http://' + host + '/image/'  + md5 + '/' + size + '/' + ext;
+        $('#result-p').html(result);
     });
 });
 
