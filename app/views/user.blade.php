@@ -2,6 +2,10 @@
 
 @section('body.main')
     @extends('layouts.menuPanel')
+    @section('nav-profile')
+            <li role="presentation" id="nav-profile" class="active"><a href="/">Profile</a></li>
+            <li role="presentation" id="nav-api" class=""><a href="/api">API</a></li>
+    @endsection
 
 @section('user.main')
 @section('user.title')
