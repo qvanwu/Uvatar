@@ -69,6 +69,7 @@ class AvatarsController extends \BaseController
     }
 
     /**
+     * Assign an avatar to Email choosen
      * @param int $id
      * @return Response
      */
