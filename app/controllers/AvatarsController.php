@@ -93,8 +93,11 @@ class AvatarsController extends \BaseController
     {
         $avatar = Avatar::find($id);
         $email = Email::where('main_avatar', $avatar->filename)->first();
-        $email->main_avatar = null;
-        $email->save();
+        if (!is_null($email)) {
+            $email->main_avatar = null;
+            $email->save();
+        }
+        File::delete(public_path() . '/userimage/' . Auth::user()->id . '/' . $avatar->filename);
         Avatar::destroy($id);
         return Redirect::to('/');
     }
