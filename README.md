@@ -1,6 +1,8 @@
 #Uvatar
 
-Here is a carbon copy of the **Gravata** service which developed under Laravel framework.
+**Uvatar is a school project.**
+
+It's a carbon copy of the **Gravata** service which developed under Laravel framework.
 
 The application is licensing under the [WTFPL](http://www.wtfpl.net/txt/copying/), that says you are totally free to use.
 
